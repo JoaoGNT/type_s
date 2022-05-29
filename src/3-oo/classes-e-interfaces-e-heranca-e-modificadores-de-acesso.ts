@@ -49,14 +49,14 @@ console.log(jogador.dizerOjogoAtual());
 console.log(Player.queHorasSao());
 
 //private,protected,public
-/* 
-public:acessível de forma geral, dentro e fora da classe;
+
+/* public:acessível de forma geral, dentro e fora da classe;
 private:acessível apenas dentro da classe onde o campo foi criado
-protected: acessível apenas dentro da classe e sobcclasses onde o campo foi criado
+protected: acessível apenas dentro da classe e sobcclasses onde o campo foi criado */
 
-*/
 
-/* class Jogo{
+
+/*  class Jogo{
     public nome;
     constructor(nome:string){
         this.nome = nome;    
@@ -69,10 +69,10 @@ protected: acessível apenas dentro da classe e sobcclasses onde o campo foi cri
 const ghost = new Jogo('Ghost of Tsushima')
 ghost.nome = 'The sims';
 console.log(ghost.nome)
-possbiliat a troca do this.nome
- */
-class Jogo{
-    private nome;
+possbiliat a troca do this.nome */
+
+ class Jogo{
+    protected nome;
     constructor(nome:string){
         this.nome = nome;    
     }
@@ -84,18 +84,42 @@ class Jogo{
 //const ghost = new Jogo('Ghost of Tsushima')
 // console.log(ghost.dizerNome())
 
-class JogoComDescricao extends Jogo{
+/* class JogoComDescricao extends Jogo{
     private descricao;
 
     constructor(nome:string, descricao:string){
         super(nome);
         this.descricao = descricao;
     }
-/*     dizerNome(){
+    dizerNome(){
         //tipo um getter
         return `O nome do jogo é ${this.nome}` // não consgio por ser um campo privado, apenas se nome na classe anterior fosse protected
-    } */
+    }
 }
 const ghost = new JogoComDescricao('Ghost of Tsushima',"É um jogo muito bom")
-console.log(ghost.dizerNome())
+console.log(ghost.dizerNome()) */
+
+ 
+//Interfaces: formas de garantir funcoes e metodos das classes
+
+interface IJogoComDescricao{
+    // nome:string;
+    // descricao:string;
+    dizerNomeComDescricao():string;
+}
+
+class JogoComDescricao extends Jogo implements IJogoComDescricao{
+    private descricao;
+
+    constructor(nome:string, descricao:string){
+        super(nome);
+        this.descricao = descricao;
+    }
+    dizerNomeComDescricao(): string {
+        
+    
+        //tipo um getter
+        return `O nome do jogo é ${this.nome}` // não consgio por ser um campo privado, apenas se nome na classe anterior fosse protected
+    }
+}
 
